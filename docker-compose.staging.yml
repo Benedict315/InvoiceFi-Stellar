@@ -1,0 +1,36 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Staging overrides – use with:
+#   docker compose -f docker-compose.yml -f docker-compose.staging.yml up --build
+#
+# Differences from local:
+#   • NODE_ENV = staging
+#   • No host-port exposure for postgres / stellar (only internal)
+#   • Restart policy = always
+#   • Stellar connects to testnet instead of standalone
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+
+  postgres:
+    restart: always
+    ports: []   # Not exposed on the host in staging
+
+  stellar-standalone:
+    command: --testnet --enable-soroban-rpc
+    environment:
+      NETWORK_PASSPHRASE: "Test SDF Network ; September 2015"
+    ports: []   # Not exposed on the host in staging
+
+  backend:
+    restart: always
+    environment:
+      NODE_ENV: staging
+      STELLAR_RPC_URL: http://stellar-standalone:8001
+      HORIZON_URL:     http://stellar-standalone:8000
+
+  frontend:
+    restart: always
+    environment:
+      NODE_ENV: staging

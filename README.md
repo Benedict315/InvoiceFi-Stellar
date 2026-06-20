@@ -83,8 +83,8 @@ Stellar Blockchain
 ### Clone Repository
 
 ```bash
-git clone https://github.com/dev-fatima-24/AgroLedger.git
-cd AgroLedger
+git clone https://github.com/Christopherdominic/InvoiceFi-Stellar.git
+cd InvoiceFi-Stellar
 ```
 
 ### Install Dependencies
@@ -98,6 +98,60 @@ npm install
 ```bash
 npm run dev
 ```
+
+---
+
+## Docker – Local Development
+
+### Prerequisites
+- [Docker](https://docs.docker.com/get-docker/) ≥ 24
+- [Docker Compose](https://docs.docker.com/compose/) v2 (bundled with Docker Desktop)
+
+### Setup
+
+```bash
+# 1. Copy environment template
+cp .env.example .env
+# Edit .env with your secrets before proceeding
+
+# 2. Start the full stack
+docker compose up --build
+```
+
+| Service            | URL                           |
+| ------------------ | ----------------------------- |
+| Frontend (Next.js) | http://localhost:3000         |
+| Backend (NestJS)   | http://localhost:4000         |
+| Horizon API        | http://localhost:8000         |
+| Soroban RPC        | http://localhost:8001         |
+| PostgreSQL         | localhost:5432                |
+
+```bash
+# Stop containers (keep data volumes)
+docker compose down
+
+# Full teardown – removes containers AND volumes
+docker compose down -v
+```
+
+### Makefile shortcuts
+
+```bash
+make up       # docker compose up --build
+make down     # docker compose down
+make clean    # docker compose down -v
+make logs     # tail all service logs
+make ps       # show running containers
+make staging  # start staging stack
+```
+
+### Staging
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.staging.yml up --build
+```
+
+The staging override switches the Stellar node to **testnet**, sets `NODE_ENV=staging`, and removes host-port exposure for the database and Stellar services.
 
 ---
 

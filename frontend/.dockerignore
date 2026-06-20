@@ -1,0 +1,41 @@
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts
+.next
+out
+dist
+build
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Version control
+.git
+.gitignore
+
+# Development tooling
+.eslintcache
+.prettierignore
+.prettierrc*
+*.md
+
+# Testing
+coverage
+__tests__
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Editor / OS
+.DS_Store
+.vscode
+*.swp
+*.swo
+Thumbs.db
