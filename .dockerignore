@@ -1,0 +1,35 @@
+# Dependencies
+**/node_modules
+
+# Build artifacts
+**/dist
+**/.next
+**/out
+**/build
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Version control
+.git
+.gitignore
+
+# Docker files (avoid recursive COPY confusion)
+**/Dockerfile
+docker-compose*.yml
+
+# Editor / OS
+.DS_Store
+.vscode
+*.swp
+*.swo
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test artifacts
+**/coverage
